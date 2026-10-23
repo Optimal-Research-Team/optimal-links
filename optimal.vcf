@@ -1,0 +1,10 @@
+BEGIN:VCARD
+VERSION:3.0
+N:;Optimal Health Clinic;;;
+FN:Optimal Health Clinic
+ORG:Optimal Health
+TEL;TYPE=WORK,VOICE:+14373700291
+EMAIL;TYPE=WORK:care@beoptimal.ca
+ADR;TYPE=WORK:;Unit 5;630 Huronia Rd;Barrie;ON;L4N 0W5;Canada
+URL:https://www.beoptimal.ca
+END:VCARD
