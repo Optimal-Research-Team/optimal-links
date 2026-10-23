@@ -6,7 +6,7 @@ A self-hosted link-in-bio page for [@beoptimal.ca](https://www.instagram.com/beo
 
 One static HTML file on GitHub Pages: no build step, no subscription, no Linktree branding. Built on the
 [Optimal design system](https://github.com/Optimal-Research-Team/optimal-design-system) ("Forest night" tokens,
-Castoro + Public Sans, the `<optimal-logo>` Into Range animation, a v1.3 fluorescence micrograph).
+Castoro + Public Sans self-hosted, the `<optimal-logo>` Into Range animation, a v1.3 fluorescence micrograph).
 
 ## What's on it
 
@@ -58,3 +58,8 @@ To make the bio read `links.beoptimal.ca` instead of the github.io address:
 ```bash
 python3 -m http.server 3093
 ```
+
+## Performance
+
+Lighthouse mobile (Oct 23, 2026): 100 performance, 100 accessibility, 100 best practices, 100 SEO; LCP 1.7 s, CLS 0.001.
+Fonts are self-hosted latin woff2 subsets (`assets/fonts/`), so no third-party request blocks first paint.
