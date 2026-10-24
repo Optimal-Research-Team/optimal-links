@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Optimal Health · Barrie</title>
 <meta name="description" content="A new kind of health clinic in Barrie, ON. Longevity and hormone care, led by Nurse Practitioners.">
-<meta name="theme-color" content="#152511">
+<meta name="theme-color" content="#FFFCF7">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Optimal Health · Barrie">
 <meta property="og:description" content="Longevity and hormone care, led by Nurse Practitioners.">
@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/Castoro-normal-400.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/PublicSans-normal.woff2" crossorigin>
-<link rel="preload" as="image" href="assets/hero-720.webp" imagesrcset="assets/hero-720.webp 720w, assets/hero-1200.webp 1200w" imagesizes="(min-width: 600px) 460px, 100vw">
+<link rel="preload" as="image" href="assets/reception-720.webp" imagesrcset="assets/reception-720.webp 720w, assets/reception-1000.webp 1000w" imagesizes="(min-width: 600px) 460px, 100vw">
 <script src="assets/optimal-logo.js" defer></script>
 <style>
   /* Castoro + Public Sans, self-hosted (latin subset from Google Fonts) so nothing blocks first paint */
@@ -25,22 +25,22 @@
   @font-face { font-family: 'Public Sans'; font-style: normal; font-weight: 500; font-display: swap; src: url(assets/fonts/PublicSans-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
   @font-face { font-family: 'Public Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url(assets/fonts/PublicSans-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 
-  /* Optimal design system — "Forest night" tokens (optimal-design-system v1.3.0, forest-night.css) */
+  /* Optimal design system — light tokens (optimal-design-system v1.3.0, colors_and_type.css).
+     Background is the site's cream, measured from beoptimal.ca. */
   :root {
-    --night-950: #0B1608;
-    --night-900: #152511;
-    --night-800: #1C3118;
-    --night-line: #2B3F27;
-    --leaf-300: #A9D49C;
     --cream: #FFFCF7;
-    --fg: #C9CDBF;
-    --fg-muted: #8E9884;
-    --hair: rgba(255, 252, 247, 0.10);
+    --bone: #F4EFE6;
+    --ink: #161C14;
+    --fg: #3D3B37;
+    --fg-muted: #6F6C66;
+    --forest: #2C4E25;
+    --forest-deep: #22401C;
+    --hair: rgba(44, 41, 35, 0.12);
     --display: 'Castoro', 'Iowan Old Style', Georgia, serif;
     --sans: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
     --gutter: 20px;
     --ease: cubic-bezier(.2, .7, .2, 1);
-    color-scheme: dark;
+    color-scheme: light;
   }
   @media (max-width: 340px) { :root { --gutter: 16px; } }
 
@@ -48,85 +48,93 @@
   html { -webkit-text-size-adjust: 100%; }
   body {
     min-height: 100vh;
-    background: var(--night-900);
+    background: var(--cream);
     color: var(--fg);
     font: 400 16px/1.45 var(--sans);
     letter-spacing: -0.01em;
-    font-feature-settings: "kern", "liga", "tnum" 0;
+    font-feature-settings: "kern", "liga";
     -webkit-font-smoothing: antialiased;
     -webkit-tap-highlight-color: transparent;
   }
-  /* Fine grain over everything, like the social exports */
+  /* A whisper of film grain, like the social exports */
   body::after {
-    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 10; opacity: .07; mix-blend-mode: overlay;
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 30; opacity: .05; mix-blend-mode: multiply;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
+  ::selection { background: var(--forest); color: var(--cream); }
   a { color: inherit; text-decoration: none; }
-  a:focus-visible { outline: 2px solid var(--leaf-300); outline-offset: 3px; border-radius: 6px; }
-  em { font-style: italic; color: var(--leaf-300); }
+  a:focus-visible { outline: 2px solid var(--forest); outline-offset: 3px; border-radius: 8px; }
+  em { font-style: italic; color: var(--forest); }
 
   .page {
     max-width: 460px; margin: 0 auto;
-    padding: 0 0 calc(40px + env(safe-area-inset-bottom));
+    padding: 0 0 calc(104px + env(safe-area-inset-bottom));
   }
 
-  /* ---------- Hero ---------- */
-  .hero { position: relative; aspect-ratio: 4 / 3.3; overflow: hidden; }
+  /* ---------- Hero: the real reception (clinic_4) ---------- */
+  .hero { position: relative; aspect-ratio: 4 / 3.6; overflow: hidden; }
   .hero img {
-    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%;
-    animation: settle 2.2s var(--ease) both;
-    /* Fade to transparent rather than to a colour, so it melts into any background */
-    -webkit-mask-image: linear-gradient(#000 28%, rgba(0, 0, 0, .55) 60%, rgba(0, 0, 0, .12) 84%, transparent 100%);
-            mask-image: linear-gradient(#000 28%, rgba(0, 0, 0, .55) 60%, rgba(0, 0, 0, .12) 84%, transparent 100%);
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%;
+    animation: settle 2s var(--ease) both;
+    /* Fade to transparent rather than to a colour, so it melts into the page */
+    -webkit-mask-image: linear-gradient(#000 34%, rgba(0, 0, 0, .62) 62%, rgba(0, 0, 0, .14) 86%, transparent 100%);
+            mask-image: linear-gradient(#000 34%, rgba(0, 0, 0, .62) 62%, rgba(0, 0, 0, .14) 86%, transparent 100%);
   }
   .hero::before {
-    content: ""; position: absolute; left: 0; right: 0; top: 0; height: 40%; z-index: 1; pointer-events: none;
-    background: linear-gradient(rgba(11, 22, 8, .7), rgba(11, 22, 8, 0));
+    content: ""; position: absolute; left: 0; right: 0; top: 0; height: 34%; z-index: 1; pointer-events: none;
+    background: linear-gradient(rgba(255, 252, 247, .86), rgba(255, 252, 247, 0));
   }
   .brand {
     position: absolute; z-index: 2; left: var(--gutter); right: var(--gutter);
     top: calc(18px + env(safe-area-inset-top));
     display: flex; align-items: center; justify-content: space-between;
   }
-  .brand optimal-logo { width: 128px; --optimal-logo-dot: var(--leaf-300); }
-  .brand span { font-size: 12px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: rgba(255, 252, 247, .72); }
+  .brand optimal-logo { width: 124px; }
+  .brand span { font-size: 11.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--fg-muted); }
 
   /* ---------- Intro ---------- */
-  .intro { position: relative; z-index: 2; margin-top: -112px; padding: 0 var(--gutter); }
+  .intro { position: relative; z-index: 2; margin-top: -92px; padding: 0 var(--gutter); }
   h1 {
     font: 400 clamp(32px, 9.4vw, 40px)/1.02 var(--display);
-    letter-spacing: -0.035em; color: var(--cream); max-width: 12ch; text-wrap: balance;
-    text-shadow: 0 2px 24px rgba(11, 22, 8, .6);
+    letter-spacing: -0.035em; color: var(--ink); max-width: 12ch; text-wrap: balance;
+    text-shadow: 0 0 22px rgba(255, 252, 247, .9), 0 0 2px rgba(255, 252, 247, .6);
   }
   .lede { margin-top: 12px; color: var(--fg); font-size: 15.5px; max-width: 34ch; }
 
-  .cta {
-    margin-top: 24px; height: 56px; padding: 0 20px 0 22px; border-radius: 14px;
+  .cta, .dock {
+    height: 56px; padding: 0 10px 0 24px; border-radius: 999px;
     display: flex; align-items: center; justify-content: space-between;
-    background: var(--cream); color: var(--night-900);
-    font: 600 17px/1 var(--sans); letter-spacing: -0.015em;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, .6) inset, 0 12px 32px -12px rgba(169, 212, 156, .35);
-    transition: transform .2s var(--ease), box-shadow .2s var(--ease);
+    background: var(--forest); color: var(--cream);
+    font: 600 16.5px/1 var(--sans); letter-spacing: -0.015em;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .14) inset, 0 12px 26px -14px rgba(44, 78, 37, .75);
+    transition: transform .2s var(--ease), background .2s;
   }
-  .cta small { font: 500 13px/1 var(--sans); color: #4E5F49; margin-left: auto; margin-right: 12px; }
-  .cta:active { transform: scale(.985); }
-  @media (hover: hover) { .cta:hover { box-shadow: 0 1px 0 rgba(255, 255, 255, .6) inset, 0 16px 40px -12px rgba(169, 212, 156, .5); } }
-  .cta .arrow { width: 20px; height: 20px; transition: transform .25s var(--ease); }
-  @media (hover: hover) { .cta:hover .arrow { transform: translateX(3px); } }
+  .cta { margin-top: 24px; }
+  .cta:active, .dock:active { transform: scale(.985); }
+  .cta i, .dock i {
+    display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(255, 252, 247, .14);
+  }
+  .cta .arrow, .dock .arrow { width: 18px; height: 18px; color: var(--cream); }
+  @media (hover: hover) {
+    .cta:hover, .dock:hover { background: var(--forest-deep); }
+    .cta:hover .arrow, .dock:hover .arrow { transform: translateX(2px); }
+  }
 
   .quick {
-    margin-top: 12px; display: grid; grid-template-columns: repeat(3, 1fr);
-    border: 1px solid var(--hair); border-radius: 14px; overflow: hidden;
+    margin-top: 10px; display: grid; grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--hair); border-radius: 999px; overflow: hidden;
+    background: rgba(255, 255, 255, .55);
   }
   .quick a {
-    display: flex; align-items: center; justify-content: center; gap: 8px; height: 48px;
+    display: flex; align-items: center; justify-content: center; gap: 7px; height: 48px;
     font: 500 14px/1 var(--sans); color: var(--fg);
     transition: background .2s, color .2s;
   }
   .quick a + a { border-left: 1px solid var(--hair); }
-  .quick a:active { background: rgba(255, 252, 247, .05); }
-  @media (hover: hover) { .quick a:hover { background: rgba(255, 252, 247, .04); color: var(--cream); } }
-  .quick svg { width: 16px; height: 16px; color: var(--leaf-300); }
+  .quick a:active { background: rgba(44, 78, 37, .06); }
+  @media (hover: hover) { .quick a:hover { background: rgba(44, 78, 37, .04); color: var(--ink); } }
+  .quick svg { width: 16px; height: 16px; color: var(--forest); }
 
   /* ---------- Sections ---------- */
   section { margin-top: 44px; padding: 0 var(--gutter); }
@@ -141,17 +149,17 @@
     padding: 18px 0 17px; border-bottom: 1px solid var(--hair);
   }
   .row::before {
-    content: ""; position: absolute; inset: 0 calc(var(--gutter) * -1); background: rgba(255, 252, 247, 0);
+    content: ""; position: absolute; inset: 0 calc(var(--gutter) * -1); background: transparent;
     transition: background .2s; pointer-events: none;
   }
-  .row:active::before { background: rgba(255, 252, 247, .04); }
-  .row b { display: block; font: 400 22px/1.12 var(--display); letter-spacing: -0.025em; color: var(--cream); }
+  .row:active::before { background: rgba(44, 78, 37, .05); }
+  .row b { display: block; font: 400 22px/1.12 var(--display); letter-spacing: -0.025em; color: var(--ink); }
   .row span { display: block; margin-top: 5px; font-size: 14px; line-height: 1.35; color: var(--fg-muted); }
-  .row span.soon { color: var(--leaf-300); }
+  .row span.soon { color: var(--forest); font-weight: 500; }
   .arrow { width: 18px; height: 18px; color: var(--fg-muted); transition: transform .25s var(--ease), color .2s; }
   @media (hover: hover) {
-    .row:hover .arrow { transform: translateX(3px); color: var(--leaf-300); }
-    .row:hover::before { background: rgba(255, 252, 247, .025); }
+    .row:hover .arrow { transform: translateX(3px); color: var(--forest); }
+    .row:hover::before { background: rgba(44, 78, 37, .03); }
   }
 
   /* Testing: a 2 x 2 grid ruled with hairlines */
@@ -162,30 +170,30 @@
     border-bottom: 1px solid var(--hair);
   }
   .cell:nth-child(even) { padding-left: 16px; padding-right: 0; border-left: 1px solid var(--hair); }
-  .cell b { font: 400 19px/1.12 var(--display); letter-spacing: -0.02em; color: var(--cream); padding-right: 22px; }
+  .cell b { font: 400 19px/1.12 var(--display); letter-spacing: -0.02em; color: var(--ink); padding-right: 22px; }
   .cell sub { font-size: .62em; line-height: 0; vertical-align: -0.28em; }
   .cell span { margin-top: 10px; font-size: 13px; line-height: 1.3; color: var(--fg-muted); }
-  .cell .arrow { position: absolute; top: 20px; right: 0; width: 16px; height: 16px; transform: rotate(-45deg); }
+  .cell .arrow { position: absolute; top: 20px; width: 16px; height: 16px; transform: rotate(-45deg); }
   .cell:nth-child(even) .arrow { right: 0; }
   .cell:nth-child(odd) .arrow { right: 14px; }
-  .cell:active { background: rgba(255, 252, 247, .04); }
-  @media (hover: hover) { .cell:hover .arrow { color: var(--leaf-300); transform: rotate(-45deg) translateX(3px); } }
+  .cell:active { background: rgba(44, 78, 37, .05); }
+  @media (hover: hover) { .cell:hover .arrow { color: var(--forest); transform: rotate(-45deg) translateX(3px); } }
 
   /* ---------- Visit ---------- */
   .visit { display: grid; gap: 22px; padding-top: 16px; }
-  .addr { font: 400 22px/1.15 var(--display); letter-spacing: -0.02em; color: var(--cream); }
+  .addr { font: 400 22px/1.15 var(--display); letter-spacing: -0.02em; color: var(--ink); }
   .addr small { display: block; margin-top: 6px; font: 400 14px/1.35 var(--sans); letter-spacing: -0.01em; color: var(--fg-muted); }
   .hours { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
   .hours td { padding: 7px 0; border-bottom: 1px solid var(--hair); color: var(--fg-muted); }
   .hours td:last-child { text-align: right; }
-  .hours tr.today td { color: var(--cream); }
+  .hours tr.today td { color: var(--ink); font-weight: 500; }
   .hours tr.today td:first-child::after {
-    content: "Today"; margin-left: 10px; font-size: 12px; font-weight: 500; color: var(--leaf-300);
+    content: "Today"; margin-left: 10px; font-size: 12px; font-weight: 600; color: var(--forest);
   }
   .contact { display: grid; gap: 2px; font-size: 15px; }
   .contact a { display: flex; justify-content: space-between; padding: 10px 0; color: var(--fg); border-bottom: 1px solid var(--hair); }
   .contact a span { color: var(--fg-muted); }
-  @media (hover: hover) { .contact a:hover { color: var(--cream); } }
+  @media (hover: hover) { .contact a:hover { color: var(--forest); } }
 
   footer {
     margin-top: 48px; padding: 0 var(--gutter);
@@ -193,18 +201,38 @@
     font-size: 12.5px; color: var(--fg-muted);
   }
   footer nav { display: flex; gap: 18px; }
-  @media (hover: hover) { footer a:hover { color: var(--cream); } }
+  @media (hover: hover) { footer a:hover { color: var(--forest); } }
+
+  /* ---------- Booking dock: appears once the main button scrolls away ---------- */
+  .dock {
+    position: fixed; z-index: 20; left: 0; right: 0; margin: 0 auto;
+    bottom: calc(14px + env(safe-area-inset-bottom));
+    width: min(420px, calc(100% - var(--gutter) * 2));
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .14) inset, 0 18px 40px -16px rgba(22, 28, 20, .55);
+    transform: translateY(calc(100% + 28px)); visibility: hidden;
+    transition: transform .45s var(--ease), visibility 0s linear .45s, background .2s;
+  }
+  .dock.show { transform: none; visibility: visible; transition: transform .45s var(--ease), visibility 0s, background .2s; }
+  .dock.show:active { transform: scale(.985); }
+  /* Cream wash behind the dock so rows don't collide with it */
+  .dock-fade {
+    position: fixed; z-index: 19; left: 0; right: 0; bottom: 0; pointer-events: none;
+    height: calc(110px + env(safe-area-inset-bottom));
+    background: linear-gradient(rgba(255, 252, 247, 0), rgba(255, 252, 247, .92) 55%);
+    opacity: 0; transition: opacity .35s var(--ease);
+  }
+  .dock.show + .dock-fade { opacity: 1; }
 
   /* ---------- Desktop: a quiet centred column ---------- */
   @media (min-width: 600px) {
-    body { background: radial-gradient(900px 600px at 50% -10%, #1F3A19 0%, var(--night-900) 60%) fixed, var(--night-900); }
+    body { background: radial-gradient(900px 560px at 50% -12%, var(--bone) 0%, var(--cream) 62%) fixed, var(--cream); }
     .page { padding-top: 48px; }
     .hero { border-radius: 24px; }
     .brand { top: 22px; }
   }
 
   /* ---------- Motion ---------- */
-  @keyframes settle { from { transform: scale(1.08); opacity: .35; } to { transform: none; opacity: 1; } }
+  @keyframes settle { from { transform: scale(1.06); opacity: .4; } to { transform: none; opacity: 1; } }
   @keyframes rise { from { transform: translateY(10px); opacity: 0; } to { transform: none; opacity: 1; } }
   .rise { animation: rise .6s var(--ease) both; animation-delay: calc(min(var(--i, 0), 8) * 40ms + 60ms); }
   @media (prefers-reduced-motion: reduce) {
@@ -230,9 +258,9 @@
 
 <main class="page">
   <div class="hero">
-    <img src="assets/hero-720.webp" srcset="assets/hero-720.webp 720w, assets/hero-1200.webp 1200w" sizes="(min-width: 600px) 460px, 100vw" alt="" width="720" height="540" fetchpriority="high">
+    <img src="assets/reception-720.webp" srcset="assets/reception-720.webp 720w, assets/reception-1000.webp 1000w" sizes="(min-width: 600px) 460px, 100vw" alt="The reception desk and waiting lounge at Optimal in Barrie" width="720" height="648" fetchpriority="high">
     <div class="brand">
-      <optimal-logo theme="dark" play="load" aria-label="Optimal"></optimal-logo>
+      <optimal-logo theme="light" play="load" aria-label="Optimal"></optimal-logo>
       <span>Barrie, ON</span>
     </div>
   </div>
@@ -242,7 +270,7 @@
     <p class="lede rise">Longevity and hormone care, led by Nurse Practitioners.</p>
     <a class="cta rise" href="https://book.beoptimal.ca/" data-id="book">
       Book an intro
-      <svg class="arrow"><use href="#arrow"/></svg>
+      <i><svg class="arrow"><use href="#arrow"/></svg></i>
     </a>
     <nav class="quick rise" aria-label="Contact">
       <a href="tel:+14373700291"><svg><use href="#phone"/></svg>Call</a>
@@ -331,6 +359,12 @@
   </footer>
 </main>
 
+<a class="dock" href="https://book.beoptimal.ca/" data-id="book-dock" tabindex="-1" aria-hidden="true">
+  Book an intro
+  <i><svg class="arrow"><use href="#arrow"/></svg></i>
+</a>
+<div class="dock-fade" aria-hidden="true"></div>
+
 <script>
   // Stagger the entrance.
   document.querySelectorAll('.rise').forEach((el, i) => el.style.setProperty('--i', i));
@@ -341,6 +375,15 @@
   ];
   document.querySelector(`.hours tr[data-day="${day}"]`)?.classList.add('today');
   document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Bring up the booking dock once the main button has scrolled off the top.
+  const dock = document.querySelector('.dock');
+  new IntersectionObserver(([e]) => {
+    const show = !e.isIntersecting && e.boundingClientRect.top < 0;
+    dock.classList.toggle('show', show);
+    dock.tabIndex = show ? 0 : -1;
+    dock.setAttribute('aria-hidden', String(!show));
+  }).observe(document.querySelector('.cta'));
 
   // UTM-tag every beoptimal.ca link so Google Analytics credits this page.
   // ?s=facebook (or tiktok, etc.) on this page's URL changes the source, so one page serves every profile.

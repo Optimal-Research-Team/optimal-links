@@ -5,14 +5,16 @@ A self-hosted link-in-bio page for [@beoptimal.ca](https://www.instagram.com/beo
 **Live:** https://optimal-research-team.github.io/optimal-links/
 
 One static HTML file on GitHub Pages: no build step, no subscription, no Linktree branding. Built on the
-[Optimal design system](https://github.com/Optimal-Research-Team/optimal-design-system) ("Forest night" tokens,
-Castoro + Public Sans self-hosted, the `<optimal-logo>` Into Range animation, a v1.3 fluorescence micrograph).
+[Optimal design system](https://github.com/Optimal-Research-Team/optimal-design-system): the site's cream
+(`#FFFCF7`, as on beoptimal.ca), forest-green buttons, Castoro + Public Sans self-hosted, and the `<optimal-logo>`
+Into Range animation. The hero is a real photo of the reception and waiting lounge
+(`optimal-promo-videos/_project/ref/clinic_4.jpg`). Clinic spaces only ever come from real photos, never AI.
 
 ## What's on it
 
 | Section | Links |
 | --- | --- |
-| Hero | Book an intro (book.beoptimal.ca), Call, Directions, Email |
+| Hero | Book an intro (book.beoptimal.ca), Call, Directions, Email. A "Book an intro" dock slides up once the main button scrolls away. |
 | Care | Menopause & perimenopause · Longevity Membership · IV iron founding waitlist |
 | Testing | VO₂ max · InBody 580 · Creator 600 · Hyperbaric oxygen |
 | Read | Menopause Protocol · Longevity Protocol · The Journal |
@@ -61,5 +63,5 @@ python3 -m http.server 3093
 
 ## Performance
 
-Lighthouse mobile (Oct 23, 2026): 100 performance, 100 accessibility, 100 best practices, 100 SEO; LCP 1.7 s, CLS 0.001.
+Lighthouse mobile (Oct 24, 2026, cream version): 99 performance, 100 accessibility, 100 best practices, 100 SEO; LCP 1.8 s, CLS 0.001.
 Fonts are self-hosted latin woff2 subsets (`assets/fonts/`), so no third-party request blocks first paint.
